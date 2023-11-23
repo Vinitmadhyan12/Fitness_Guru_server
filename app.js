@@ -49,21 +49,23 @@ passport.serializeUser(Name.serializeUser());
 passport.deserializeUser(Name.deserializeUser());
 
 
-app.use(cors());
+// app.use(cors());
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Replace with the actual origin of your client application
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Credentials', true);
+const allowedOrigins = ['http://localhost:5173', 'https://fitness-guru-client-l7fm.vercel.app'];
 
-    // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-    } else {
-        next();
-    }
-});
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    })
+);
 
 app.get("/", (req, res) => {
     // res.json({ message: "hello i am vinit" })
