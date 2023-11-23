@@ -52,7 +52,8 @@ passport.deserializeUser(Name.deserializeUser());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.json({ message: "hello i am vinit" })
+    // res.json({ message: "hello i am vinit" })
+    res.send("Hello this is Fitness Guru website")
 })
 app.use('/', userRoutes);
 
