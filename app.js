@@ -49,13 +49,7 @@ passport.serializeUser(Name.serializeUser());
 passport.deserializeUser(Name.deserializeUser());
 
 
-app.use(cors(
-    {
-        origin: ["https://fitness-guru-server-hgnhwiz2i-vinits-projects-006eb735.vercel.app"],
-        methods: ["POST", "GET", "PUT", "DELETE"],
-        credentials: true
-    }
-));
+app.use(cors());
 
 app.get("/", (req, res) => {
     // res.json({ message: "hello i am vinit" })
