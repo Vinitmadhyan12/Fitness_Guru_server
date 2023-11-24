@@ -69,7 +69,7 @@ app.use(
 
 app.get("/", (req, res) => {
     // res.json({ message: "hello i am vinit" })
-    res.send("Hello this is Fitness Guru website")
+    res.send("Hello this is Fitness Guru website from vinit")
 })
 app.use('/', userRoutes);
 
