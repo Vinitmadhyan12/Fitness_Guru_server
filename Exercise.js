@@ -3,16 +3,16 @@ const mongoose = require('mongoose')
 // mongodb://127.0.0.1:27017/FitnessGuru
 
 
-// const dburl = process.env.MONGODB_URL;
-// mongoose.connect(dburl, {
-//     useNewUrlParser: true, useUnifiedTopology: true
-// })
+const dburl = process.env.MONGODB_URL;
+mongoose.connect(dburl, {
+    useNewUrlParser: true, useUnifiedTopology: true
+})
 
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error"));
-// db.once("open", () => {
-//     console.log("database connected")
-// })
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error"));
+db.once("open", () => {
+    console.log("database connected")
+})
 
 const Exerciseschema = new mongoose.Schema({
 
@@ -63,29 +63,29 @@ const fetchData = async (url, options) => {
     return data;
 }
 
-// const ExerciseData = async () => {
-//     const Allexercises = await fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=1300', exerciseOptions);
-//     const Deleteex = await Variation.deleteMany();
+const ExerciseData = async () => {
+    const Allexercises = await fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=1300', exerciseOptions);
+    const Deleteex = await Variation.deleteMany();
 
-//     console.log("deleted all");
-//     for (let i = 0; i < Allexercises.length; i++) {
-//         const newExercise = new Variation({
-//             id: Allexercises[i].id,
-//             bodyPart: Allexercises[i].bodyPart,
-//             equipment: Allexercises[i].equipment,
-//             gifUrl: Allexercises[i].gifUrl,
-//             name: Allexercises[i].name,
-//             target: Allexercises[i].target,
-//             instructions: Allexercises[i].instructions
-//         })
-//         newExercise.save();
-//     }
-//     console.log("done");
+    console.log("deleted all");
+    for (let i = 0; i < Allexercises.length; i++) {
+        const newExercise = new Variation({
+            id: Allexercises[i].id,
+            bodyPart: Allexercises[i].bodyPart,
+            equipment: Allexercises[i].equipment,
+            gifUrl: Allexercises[i].gifUrl,
+            name: Allexercises[i].name,
+            target: Allexercises[i].target,
+            instructions: Allexercises[i].instructions
+        })
+        newExercise.save();
+    }
+    console.log("done");
 
-//     const AExer = await Variation.find();
-//     console.log(AExer.length)
-// }
+    const AExer = await Variation.find();
+    console.log(AExer.length)
+}
 
-// ExerciseData();
+ExerciseData();
 
 module.exports = Variation
